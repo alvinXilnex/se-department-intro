@@ -5,6 +5,10 @@ Interactive HTML version of the Software Engineering department intro deck. Live
 
 No build step, no server required to preview locally — `index.html` runs by just opening it in a browser.
 
+> **Using Claude Code to make edits?** This repo has a `CLAUDE.md` with instructions Claude follows
+> automatically — including opening the updated slide in your browser right after every change, so
+> you don't need to ask it to. Just tell Claude what to change and it'll show you the result.
+
 ## Files
 
 | File | Purpose |
