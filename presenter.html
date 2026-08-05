@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Presenter View — SE Intro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="presenter">
+  <div class="pv-wrap">
+    <div class="pv-top">
+      <div class="pv-title">SOFTWARE ENGINEERING · PRESENTER VIEW</div>
+      <div class="pv-clock">
+        <div class="pv-timer">
+          <span id="elapsed">00:00</span>
+          <button id="btnResetTimer">reset</button>
+        </div>
+        <div id="clock">--:--</div>
+        <div class="pv-status" id="status">not linked</div>
+      </div>
+    </div>
+
+    <div class="pv-main">
+      <div class="pv-current-wrap" id="curWrap">
+        <div class="slide-stage" id="curStage"><div id="curInner"></div></div>
+      </div>
+      <div class="pv-notes">
+        <h4>Hint</h4>
+        <p class="hint" id="hintText"></p>
+        <h4>What to say</h4>
+        <p class="script" id="scriptText"></p>
+      </div>
+    </div>
+
+    <div class="pv-side">
+      <div class="pv-next-label">NEXT SLIDE</div>
+      <div class="pv-next-wrap" id="nextWrap">
+        <div class="slide-stage" id="nextStage"><div id="nextInner"></div></div>
+      </div>
+      <div class="pv-progress"><div id="progressBar"></div></div>
+      <div id="slideCount" style="color:#cfc9dc;font-family:var(--font);font-size:13px;text-align:center;"></div>
+      <div class="pv-controls">
+        <button id="btnPrev">‹ Prev</button>
+        <button id="btnNext">Next ›</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="deck.js?v=7"></script>
+  <script src="presenter.js?v=7"></script>
+</body>
+</html>
