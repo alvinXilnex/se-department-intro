@@ -44,7 +44,13 @@ No build step, no server required to preview locally — `index.html` runs by ju
 
 5. **Speaker notes.** Every slide has `addNote(hint, script)` right after its `builders.push(...)`. Keep the `script` grounded strictly in what's actually on the slide — no invented stats, no exaggeration. The `hint` is a short presenter-facing reminder of what to emphasize.
 
-6. **Publish.**
+6. **Swapping the speaker photo** (the deck rotates presenters). In `deck.js`, find `// ---------- Slide 2: Speaker ----------`:
+   - Drop the new photo into `assets/` (any reasonable image size/aspect works — it's cropped to a circle).
+   - Update `photoImg.src = "assets/alvin.jpg";` to point at the new filename.
+   - Update the name text right below it: `text(s, 0, photoY + photoD + 0.3, SLIDE_W, 0.6, "Alvin Jiang", ...)`.
+   - That's it — no other slide references the speaker photo or name.
+
+7. **Publish.**
    ```bash
    git add -A
    git commit -m "describe what changed"
@@ -52,7 +58,7 @@ No build step, no server required to preview locally — `index.html` runs by ju
    ```
    GitHub Pages rebuilds automatically — the live site updates within ~30–60 seconds of pushing to `main`.
 
-7. **Regenerate the portable single-file copy** (only needed if you want to hand someone `SE-Intro-Standalone.html` directly instead of the link):
+8. **Regenerate the portable single-file copy** (only needed if you want to hand someone `SE-Intro-Standalone.html` directly instead of the link):
    ```bash
    node build-single.js
    ```
