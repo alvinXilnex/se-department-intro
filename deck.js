@@ -355,21 +355,21 @@
         const itemH = itemHs[idx];
         roundRect(s, x + 0.14, iy, colW - 0.28, itemH, { fill: PILL_BG, radius: 6, anim: 3 + i });
         const roleFs = it.role.length > 26 ? 9 : 10;
-        text(s, x + 0.22, iy + 0.04, colW - 0.44, 0.2, it.role, { fontSize: roleFs, bold: true, color: DARK });
+        text(s, x + 0.22, iy + 0.04, colW - 0.44, 0.2, it.role, { fontSize: roleFs, bold: true, color: DARK, anim: 3 + i });
         let ly = iy + 0.22;
         if (it.open) {
-          richText(s, x + 0.22, ly, colW - 0.44, 0.14, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: "Vacant", color: AMBER, bold: true, fontSize: 8.5 }]);
+          richText(s, x + 0.22, ly, colW - 0.44, 0.14, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: "Vacant", color: AMBER, bold: true, fontSize: 8.5 }], { anim: 3 + i });
           ly += 0.135;
-          text(s, x + 0.22, ly, colW - 0.44, 0.13, `Interim cover · ${it.interim}`, { fontSize: 7, color: MUTED_LIGHT, italic: true });
+          text(s, x + 0.22, ly, colW - 0.44, 0.13, `Interim cover · ${it.interim}`, { fontSize: 7, color: MUTED_LIGHT, italic: true, anim: 3 + i });
           ly += 0.14;
         } else {
-          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: it.lead, color: DARK, bold: true, fontSize: 8.5 }]);
+          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: it.lead, color: DARK, bold: true, fontSize: 8.5 }], { anim: 3 + i });
           ly += 0.15;
         }
         if (it.pic) {
-          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "PIC · ", color: MUTED, fontSize: 8.5 }, { text: it.pic, color: TEAL, bold: true, fontSize: 8.5 }]);
+          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "PIC · ", color: MUTED, fontSize: 8.5 }, { text: it.pic, color: TEAL, bold: true, fontSize: 8.5 }], { anim: 3 + i });
         } else {
-          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "PIC · ", color: MUTED, fontSize: 8.5 }, { text: "Not yet assigned", color: AMBER, bold: true, fontSize: 8.5 }]);
+          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "PIC · ", color: MUTED, fontSize: 8.5 }, { text: "Not yet assigned", color: AMBER, bold: true, fontSize: 8.5 }], { anim: 3 + i });
         }
         iy += itemH + itemGap;
       });
@@ -388,8 +388,8 @@
     enableItems.forEach((it, i) => {
       const x = marginX + i * (eW + eGap);
       roundRect(s, x, eY, eW, eH, { card: true, radius: 7, anim: 7 });
-      text(s, x + 0.12, eY + 0.08, eW - 0.24, 0.18, it.name, { fontSize: 9, bold: true, color: DARK });
-      richText(s, x + 0.12, eY + 0.28, eW - 0.24, 0.16, [{ text: "Lead · ", color: MUTED, fontSize: 8 }, { text: it.lead, color: DARK, bold: true, fontSize: 8 }]);
+      text(s, x + 0.12, eY + 0.08, eW - 0.24, 0.18, it.name, { fontSize: 9, bold: true, color: DARK, anim: 7 });
+      richText(s, x + 0.12, eY + 0.28, eW - 0.24, 0.16, [{ text: "Lead · ", color: MUTED, fontSize: 8 }, { text: it.lead, color: DARK, bold: true, fontSize: 8 }], { anim: 7 });
     });
 
     const legendY = eY + eH + 0.14;
