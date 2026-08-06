@@ -306,7 +306,7 @@
     roundRect(s, centerX - ctoW / 2, ctoY, ctoW, ctoH, { fill: DARK, radius: 8, anim: 0 });
     richText(s, centerX - ctoW / 2, ctoY, ctoW, ctoH, [
       { text: "CHIEF TECHNOLOGY OFFICER", fontSize: 8.5, bold: true, color: "#C9B8DE", block: true, charSpacing: 5 },
-      { text: "Eng Aik Kian", fontSize: 13, bold: true, color: WHITE, block: true },
+      { text: "Eng Aik Kian (Ekin)", fontSize: 13, bold: true, color: WHITE, block: true },
     ], { align: "center", valign: "middle", anim: 0 });
 
     vline(s, centerX, ctoY + ctoH, 0.13, { color: MUTED_LIGHT });
