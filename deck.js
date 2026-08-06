@@ -328,13 +328,13 @@
     ], { align: "center", valign: "middle", anim: 2 });
 
     const domains = [
-      { num: "01", name: "Empower Workforce", color: TEAL, items: [{ role: "Workforce Sales", lead: "Liew Wei Hoong" }, { role: "Workforce Inventory", lead: "Scott Ng Peng Yee" }] },
-      { num: "02", name: "Customer Engagement", color: MAGENTA, items: [{ role: "Customer Engagement · Transaction", lead: "Alvin Jiang" }, { role: "Customer Engagement · Loyalty", lead: "Alvin Jiang" }] },
-      { num: "03", name: "Insights & Analytics", color: PURPLE, items: [{ role: "Insights & Analytics", lead: "Lee Chen Lun" }] },
-      { num: "04", name: "Integrations & Ecosystem", color: BLUE, items: [{ role: "Integration & Alliances", lead: "Scott Ng Peng Yee" }, { role: "Plug-in", lead: "Vacant", open: true, interim: "Chan Cheang Hau" }] },
+      { num: "01", name: "Empower Workforce", color: TEAL, items: [{ role: "Workforce Sales", lead: "Liew Wei Hoong", pic: "Li Foong" }, { role: "Workforce Inventory", lead: "Scott Ng Peng Yee", pic: "Ooi Zhi Hao" }] },
+      { num: "02", name: "Customer Engagement", color: MAGENTA, items: [{ role: "Customer Engagement · Transaction", lead: "Alvin Jiang", pic: null }, { role: "Customer Engagement · Loyalty", lead: "Alvin Jiang", pic: null }] },
+      { num: "03", name: "Insights & Analytics", color: PURPLE, items: [{ role: "Insights & Analytics", lead: "Lee Chen Lun", pic: "Lim Ni Feih" }] },
+      { num: "04", name: "Integrations & Ecosystem", color: BLUE, items: [{ role: "Integration & Alliances", lead: "Scott Ng Peng Yee", pic: "Mak Kai Shun" }, { role: "Plug-in", lead: "Vacant", open: true, interim: "Chan Cheang Hau", pic: "Yong Jian" }] },
     ];
     const marginX = 0.5, contentW = SLIDE_W - 2 * marginX, gap = 0.18;
-    const colW = (contentW - 3 * gap) / 4, colY = pillY + pillH + 0.2, colH = 1.8;
+    const colW = (contentW - 3 * gap) / 4, colY = pillY + pillH + 0.2, colH = 2.04;
     const branchY = pillY + pillH + 0.1;
     const firstColCx = marginX + colW / 2, lastColCx = marginX + 3 * (colW + gap) + colW / 2;
     vline(s, centerX, pillY + pillH, 0.16, { color: MUTED_LIGHT });
@@ -347,26 +347,35 @@
       card.dataset.domain = d.num;
       text(s, x + 0.16, colY + 0.13, colW - 0.32, 0.2, `DOMAIN ${d.num}`, { fontSize: 8.5, bold: true, color: d.color, charSpacing: 10, anim: 3 + i });
       text(s, x + 0.16, colY + 0.33, colW - 0.32, 0.32, d.name, { fontSize: 12.5, bold: true, color: DARK, anim: 3 + i });
-      const itemAreaTop = colY + 0.62, itemAreaH = colH - 0.62 - 0.08, itemGap = 0.06;
-      const itemHs = d.items.map((it) => (it.open ? 0.56 : d.items.length === 1 ? 0.54 : 0.46));
+      const itemAreaTop = colY + 0.60, itemAreaH = colH - 0.60 - 0.06, itemGap = 0.06;
+      const itemHs = d.items.map((it) => (it.open ? 0.70 : d.items.length === 1 ? 0.62 : 0.56));
       const totalItemsH = itemHs.reduce((a, b) => a + b, 0) + (d.items.length - 1) * itemGap;
       let iy = itemAreaTop + Math.max(0, (itemAreaH - totalItemsH) / 2);
       d.items.forEach((it, idx) => {
         const itemH = itemHs[idx];
         roundRect(s, x + 0.14, iy, colW - 0.28, itemH, { fill: PILL_BG, radius: 6, anim: 3 + i });
         const roleFs = it.role.length > 26 ? 9 : 10;
-        text(s, x + 0.22, iy + 0.05, colW - 0.44, 0.22, it.role, { fontSize: roleFs, bold: true, color: DARK });
+        text(s, x + 0.22, iy + 0.04, colW - 0.44, 0.2, it.role, { fontSize: roleFs, bold: true, color: DARK });
+        let ly = iy + 0.22;
         if (it.open) {
-          richText(s, x + 0.22, iy + 0.25, colW - 0.44, 0.15, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: "Vacant", color: AMBER, bold: true, fontSize: 8.5 }]);
-          text(s, x + 0.22, iy + 0.39, colW - 0.44, 0.14, `Interim cover · ${it.interim}`, { fontSize: 7, color: MUTED_LIGHT, italic: true });
+          richText(s, x + 0.22, ly, colW - 0.44, 0.14, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: "Vacant", color: AMBER, bold: true, fontSize: 8.5 }]);
+          ly += 0.135;
+          text(s, x + 0.22, ly, colW - 0.44, 0.13, `Interim cover · ${it.interim}`, { fontSize: 7, color: MUTED_LIGHT, italic: true });
+          ly += 0.14;
         } else {
-          richText(s, x + 0.22, iy + 0.26, colW - 0.44, 0.18, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: it.lead, color: DARK, bold: true, fontSize: 8.5 }]);
+          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "Lead · ", color: MUTED, fontSize: 8.5 }, { text: it.lead, color: DARK, bold: true, fontSize: 8.5 }]);
+          ly += 0.15;
+        }
+        if (it.pic) {
+          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "PIC · ", color: MUTED, fontSize: 8.5 }, { text: it.pic, color: TEAL, bold: true, fontSize: 8.5 }]);
+        } else {
+          richText(s, x + 0.22, ly, colW - 0.44, 0.15, [{ text: "PIC · ", color: MUTED, fontSize: 8.5 }, { text: "Not yet assigned", color: AMBER, bold: true, fontSize: 8.5 }]);
         }
         iy += itemH + itemGap;
       });
     });
 
-    const enableY = colY + colH + 0.16;
+    const enableY = colY + colH + 0.10;
     text(s, marginX, enableY, 6, 0.22, "ENABLEMENT  ·  PLATFORM TEAMS", { fontSize: 9.5, bold: true, color: MUTED, charSpacing: 10, anim: 7 });
     const enableItems = [
       { name: "Platform — High Stack Challenge", lead: "Eng Aik Kian" },
@@ -375,15 +384,15 @@
       { name: "IT Team", lead: "Lee Chen Lun" },
       { name: "Internal Tools Team", lead: "Scott Ng Peng Yee" },
     ];
-    const eGap = 0.15, eW = (contentW - 4 * eGap) / 5, eY = enableY + 0.22, eH = 0.66;
+    const eGap = 0.15, eW = (contentW - 4 * eGap) / 5, eY = enableY + 0.20, eH = 0.48;
     enableItems.forEach((it, i) => {
       const x = marginX + i * (eW + eGap);
       roundRect(s, x, eY, eW, eH, { card: true, radius: 7, anim: 7 });
-      text(s, x + 0.12, eY + 0.07, eW - 0.24, 0.34, it.name, { fontSize: 9, bold: true, color: DARK });
-      richText(s, x + 0.12, eY + 0.42, eW - 0.24, 0.2, [{ text: "Lead · ", color: MUTED, fontSize: 8 }, { text: it.lead, color: DARK, bold: true, fontSize: 8 }]);
+      text(s, x + 0.12, eY + 0.08, eW - 0.24, 0.18, it.name, { fontSize: 9, bold: true, color: DARK });
+      richText(s, x + 0.12, eY + 0.28, eW - 0.24, 0.16, [{ text: "Lead · ", color: MUTED, fontSize: 8 }, { text: it.lead, color: DARK, bold: true, fontSize: 8 }]);
     });
 
-    const legendY = eY + eH + 0.16;
+    const legendY = eY + eH + 0.14;
     const legend = [
       { label: "Empower Workforce", color: TEAL },
       { label: "Customer Engagement", color: MAGENTA },
@@ -414,7 +423,7 @@
   });
   addNote(
     "Walk through the reporting line slowly: CTO to Head of Department to Team Leads, then the 4 domains plus the Enablement/Platform teams underneath. This is a good slide to pause on and let people actually read, rather than narrating fast — it's a lot of names and boxes at once. Make sure to land the domain Product PIC point clearly, since it sets up the Cross-Department Collaboration slide later. Call out the open Plug-in role and who's covering it on an interim basis. Mention that everyone on this chart is reachable via Lark.",
-    "Now let's get concrete about how we're organized — org charts can feel abstract until you see how they actually work day to day. At the top, Eng Aik Kian — or Ekin, as most of us call him — is our Chief Technology Officer, and Chan Cheang Hau leads the department day-to-day as Head of Department. Reporting into them are our Team Leads and Managers: Liew Wei Hoong, Scott Ng Peng Yee, Alvin Jiang, and Lee Chen Lun. Below that, we split into four domains — Empower Workforce, Customer Engagement, Insights & Analytics, and Integrations & Ecosystem. Here's a detail worth remembering: none of these domains is just a group of engineers working in isolation. Each one pairs its engineering team with a dedicated domain Product PIC from Product Solution, who partners with us closely on requirements and priorities — I'll come back to that partnership in a couple of slides, because it's actually the collaboration we lean on the most day to day. We also have enablement and platform teams supporting everyone underneath all of this — Platform, Platform QA, IT, and Internal Tools. One honest note while we're here: our Plug-in role is currently open, with Chan Cheang Hau covering it in the interim while we look to fill it. And if anyone on this chart is ever someone you need to reach, everyone here is contactable through Lark."
+    "Now let's get concrete about how we're organized — org charts can feel abstract until you see how they actually work day to day. At the top, Eng Aik Kian — or Ekin, as most of us call him — is our Chief Technology Officer, and Chan Cheang Hau leads the department day-to-day as Head of Department. Reporting into them are our Team Leads and Managers: Liew Wei Hoong, Scott Ng Peng Yee, Alvin Jiang, and Lee Chen Lun. Below that, we split into four domains — Empower Workforce, Customer Engagement, Insights & Analytics, and Integrations & Ecosystem. Here's a detail worth remembering: none of these domains is just a group of engineers working in isolation. Each one pairs its engineering team with a dedicated domain Product PIC from Product Solution, who partners with us closely on requirements and priorities — you'll see those PICs named on each card, and Customer Engagement is the one exception still waiting on a PIC to be assigned. I'll come back to that partnership in a couple of slides, because it's actually the collaboration we lean on the most day to day. We also have enablement and platform teams supporting everyone underneath all of this — Platform, Platform QA, IT, and Internal Tools. One honest note while we're here: our Plug-in role is currently open, with Chan Cheang Hau covering it in the interim while we look to fill it. And if anyone on this chart is ever someone you need to reach, everyone here is contactable through Lark."
   );
 
   // ---------- Slide 7: Team Snapshot ----------
