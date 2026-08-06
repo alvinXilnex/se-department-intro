@@ -303,7 +303,7 @@
     softBg(s); header(s, "Department Structure");
     text(s, 0.52, 1.28, 10.5, 0.35, "Each domain pairs a group of engineers with a dedicated domain Product PIC from Product Solution.", { fontSize: 14, italic: true, color: MUTED });
     const centerX = SLIDE_W / 2;
-    const ctoW = 3.5, ctoH = 0.58, ctoY = 1.72;
+    const ctoW = 3.7, ctoH = 0.58, ctoY = 1.72;
     roundRect(s, centerX - ctoW / 2, ctoY, ctoW, ctoH, { fill: DARK, radius: 8, anim: 0 });
     richText(s, centerX - ctoW / 2, ctoY, ctoW, ctoH, [
       { text: "CHIEF TECHNOLOGY OFFICER", fontSize: 8.5, bold: true, color: "#C9B8DE", block: true, charSpacing: 5 },
