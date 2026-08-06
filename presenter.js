@@ -24,9 +24,11 @@
 
   function renderSlide(i, container, inner, wrap, stage, interactive) {
     inner.innerHTML = "";
-    DECK.build(i, inner);
+    const slideEl = DECK.build(i, inner);
     if (!interactive) {
       inner.style.pointerEvents = "none";
+    } else {
+      requestAnimationFrame(() => DECK.runCountUps(slideEl));
     }
     scaleStage(wrap, stage);
   }

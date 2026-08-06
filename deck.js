@@ -859,9 +859,35 @@
     return s;
   }
 
+  function runCountUps(slideEl) {
+    slideEl.querySelectorAll("[data-count-to]").forEach((e) => {
+      const to = parseInt(e.dataset.countTo, 10);
+      const suffix = e.dataset.suffix || "";
+      const dur = 900;
+      const wrap = e.closest(".anim");
+      const cs = wrap ? getComputedStyle(wrap) : null;
+      const delayMs = cs ? (parseFloat(cs.animationDelay) || 0) * 1000 : 0;
+      const durMs = cs ? (parseFloat(cs.animationDuration) || 0) * 1000 : 0;
+      const wait = delayMs + durMs;
+      function begin() {
+        const start = performance.now();
+        function step(t) {
+          const p = Math.min(1, (t - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          e.textContent = Math.round(eased * to) + (p >= 1 ? suffix : "");
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      if (wait > 0) setTimeout(begin, wait);
+      else begin();
+    });
+  }
+
   global.DECK = {
     count: builders.length,
     build,
+    runCountUps,
     notes,
     titles: ["Title", "Speaker", "Mission & Vision", "Xilnex Engineer DNA", "Objectives", "Department Structure", "Team Snapshot", "Domain Overview", "Domain Interactions", "Cross-Department Collaboration", "Tech Stack", "Career Paths", "Questions & Discussion", "Thank You"],
   };
